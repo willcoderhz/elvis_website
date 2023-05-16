@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="./img/album.jpg" type="image/x-icon">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/98e1cb7a78.js" crossorigin="anonymous"></script>
     <title>Elvis</title>
     <style>
         body {
             background-image: url('./img/background.webp');
             background-size: cover;
             background-blur: 30px; /* 可根据需要调整模糊程度 */
-            background-color: rgba(255, 255, 255, 0.3); /* 半透明白色背景 */
+            background-color: rgba(255, 255, 255, 0.253); /* 半透明白色背景 */
             background-blend-mode: lighten;
         }
         .logo {
             width: 150px;
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 20px;
+            left: 580px;
             transition: transform 0.3s; 
         }
 
@@ -26,22 +29,29 @@
         }
 
         .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh; /* 使内容在屏幕垂直方向居中 */
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+}
+
         .album-cover {
             width: 350px;
             margin-bottom: 20px;
             transition: transform 0.3s;  /* 添加过渡效果 */
         }
+        
         .album-cover:hover {
     transform: scale(1.05);  /* 在鼠标悬停时放大元素 */
      /* 在鼠标悬停时添加阴影 */
   }
 
+  .description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
         .play-random {
             background-color: #333;
             color: white;
@@ -49,7 +59,17 @@
             border-radius: 5px;
             text-decoration: none;
             font-size: 18px;
+            margin-left: 30px;
+            margin-top: 20px;
+            margin-bottom: 50px;
         }
+
+        .album-title {
+    font-size: 30px;
+    color: #dddddd;
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
 
         .content a:hover {
             background-color: #919191;
@@ -58,48 +78,145 @@
             #track-list {
             list-style-type: none; /* 移除列表的默认样式 */
             padding: 0; /* 移除默认的内边距 */
+            width: 90%;  /* 调整这个值以改变列表的宽度 */
+            margin: auto;  /* 使列表在页面中居中 */
         }
 
         #track-list li {
             margin: 10px 0;
             cursor: pointer;
+            display: flex;  /* 使列表项的内容在一行内显示，并允许使用flex布局的属性 */
+            justify-content: space-between;  /* 在列表项的内容之间添加平均的空间，使其填充满整个宽度 */
+            color: #3f8d5d;
+            font-weight: bold;
+            font-size: large;
         }
 
         #track-list li:hover {
-            color: blue; /* 鼠标悬停时改变颜色 */
+            color: rgb(255, 255, 255); /* 鼠标悬停时改变颜色 */
         }
+
+           /* 添加以下样式 */
+        .track-list-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #f2f2f290;  /* 一个浅色的灰色 */
+    border-radius: 20px;  /* 边缘平滑，值越大边缘越平滑 */
+           width: 53%;
+           margin: auto;
+           padding-bottom: 20px;
+           margin-top: -80px;
+           
+        }
+        
+        /* 添加以下样式 */
+        .song-title {
+            margin-right: 50px; /* 调整这个值以增加或减少宽度 */
+            flex-grow: 1;  /* 允许歌曲标题占用剩余的空间 */
+            text-align: left;  /* 使歌曲标题左对齐 */
+            margin-left: 30px;
+        }
+
+        .song-duration {
+            margin-left: 50px; /* 调整这个值以增加或减少宽度 */
+            flex-shrink: 0;  /* 防止歌曲时长被压缩，使其始终保持其本来的大小 */
+            text-align: right;  /* 使歌曲时长右对齐 */
+        }
+
+        .track-list-container h2 {
+        text-align: left;
+        width: 90%;
+        color: #3f8d5d;
+        font-size: 35px;
+        }
+
+        .play-button {
+    font-size: 20px;  /* 调整这个值以改变按钮的大小 */
+    vertical-align: middle;  /* 使按钮垂直居中对齐 */
+    padding-top: 2px; /* 使按钮向下移动一点，可以根据需要调整 */     
+        }
+
+        .play-button:hover {
+            scale: 1.05;
+        }
+        footer {
+    width: 100%; 
+    /* 如果你希望footer总是在页面底部，可以设置为fixed */
+    bottom: 0;
+    text-align: center;
+    color: rgba(255, 106, 106, 0.63);
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+footer p {
+    margin: 10px;
+}
+
+    iframe {
+        border-radius: 20px;
+    }
+
+    .video{
+        padding-top: 20px;
+        text-align: center;
+    }
+
     </style>
 </head>
 <body>
     <img src="./img/logo.png" alt="猫王Logo" class="logo">
     <div class="content">
+        
         <img src="./img/album.jpg" alt="猫王专辑封面" class="album-cover">
-        <a href="javascript:void(0)" onclick="playRandom()" class="play-random">Listen Now</a>
+        <div class="description">
+            <h1 class="album-title">Best of Elvis Presly</h1>
+            <a href="javascript:void(0)" onclick="playRandom()" class="play-random"><i class="fa-solid fa-headphones"></i>&nbsp;&nbsp;Listen Now</a>
+        </div>
     </div>
+    <div class="track-list-container">
       <h2>Track List</h2>
     <ul id="track-list">
         <!-- 使用 JavaScript 填充音乐列表 -->
     </ul>
+    </div>
 
     <!-- 隐藏音乐播放器，包含十首歌曲 -->
     <audio id="music-player" controls style="display:none;">
         <source id="music-source" src="" type="audio/mpeg">
     </audio>
+    <div class="video">
+        <iframe width="53%" height="315" src="https://www.youtube.com/embed/_17kC1nFQzY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <footer>
+        <p>&copy; 2023 Elvis Music. All rights reserved.</p>
+        <p>Contact information: <a href="mailto:someone@example.com">Elvis@gmail.com</a></p>
+    </footer>
 
     <script>
-        const songs = [
-            { title: "歌曲1", file: "path/to/song1.mp3", duration: "03:45" },
-            { title: "歌曲2", file: "path/to/song2.mp3", duration: "04:12" },
-            { title: "歌曲3", file: "path/to/song3.mp3", duration: "02:50" },
-            // 添加更多歌曲
-        ];
+     const songs = [
+    { title: "And I Love You So", file: "./music/Elvis_Presley_-_And_I_Love_You_So_(mp3.pm).mp3", duration: "03:45" },
+    { title: "Blue Suede Shoes", file: "./music/Elvis_Presley_-_Blue_Suede_Shoes_(mp3.pm).mp3", duration: "04:12" },
+    { title: "Heartbreak Hotel", file: "./music/Elvis_Presley_-_Heartbreak_Hotel_(mp3.pm).mp3", duration: "02:50" },
+    // 以下是新添加的歌曲，你需要替换为实际的文件路径和时长
+    { title: "Can't Help Falling In Love", file: "./music/Elvis_Presley_-_Can_t_Help_Falling_In_Love_(mp3.pm).mp3", duration: "03:15" },
+    { title: "Don't Be Cruel", file: "./music/Elvis_Presley_-_Dont_Be_Cruel_(mp3.pm).mp3", duration: "02:40" },
+    { title: "Rock And Roll", file: "./music/Elvis_Presley_-_Rock_And_Roll_(mp3.pm).mp3", duration: "04:05" },
+    { title: "Summer Kisses Winter Tears", file: "./music/Elvis_Presley_-_Summer_Kisses_Winter_Tears_(mp3.pm).mp3", duration: "03:25" },
+    { title: "Sweet Caroline", file: "./music/Elvis_Presley_-_Sweet_Caroline_reh._10.08.70_(mp3.pm).mp3", duration: "03:50" },
+    { title: "Yesterday", file: "./music/Elvis_Presley_-_Yesterday_Hey_Jude_The_Beatles_(mp3.pm).mp3", duration: "02:30" },
+    { title: "You Are Always On My Mind", file: "./music/Elvis_Presley_-_You_Are_Always_On_My_Mind_(mp3.pm).mp3", duration: "04:00" },
+];
 
         function playRandom() {
             const randomIndex = Math.floor(Math.random() * songs.length);
             const musicPlayer = document.getElementById("music-player");
             const musicSource = document.getElementById("music-source");
 
-            musicSource.src = songs[randomIndex];
+            musicSource.src = songs[randomIndex].file;
             musicPlayer.load();
             musicPlayer.play();
         }
@@ -115,15 +232,15 @@
 
         // 创建音乐列表
         const trackList = document.getElementById("track-list");
-        songs.forEach((song, index) => {
-            const listItem = document.createElement("li");
-            listItem.innerHTML = `
-                ${index + 1}. 
-                <span onclick="playSong('${song.file}')">${song.title}</span> 
-                ${song.duration}
-            `;
-            trackList.appendChild(listItem);
-        });
+songs.forEach((song, index) => {
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `
+        <i class="fa-solid fa-play play-button" onclick="playSong('${song.file}')"></i>
+        <span class="song-title">${song.title}</span>
+        <span class="song-duration">${song.duration}</span>
+    `;
+    trackList.appendChild(listItem);
+});
     </script>
 </body>
 </html>
